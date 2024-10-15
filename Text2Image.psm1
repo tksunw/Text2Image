@@ -35,7 +35,7 @@ function New-Image
                    ValueFromPipelineByPropertyName=$true, 
                    ValueFromRemainingArguments=$false)]
         [ValidateNotNull()]
-        [ValidateSet("PowerShell","CMD","PuTTY","LinuxTerminal")]
+        [ValidateSet("PowerShell","CMD","PuTTY","LinuxTerminal","VSCode")]
         [Alias("Style")]
         $ImageStyle="PowerShell",
 
@@ -76,6 +76,15 @@ function New-Image
                   
                   switch ($ImageStyle)
                   {
+                      'VScode' {
+                        $ImageStyleObjProps=@{
+                            FontName="Consolas"
+                            FontSize=13
+                            TextColor=[System.Drawing.Brushes]::LightGray
+                            BackgroundColor=[System.Drawing.Color]::FromArgb(60,60,60)
+                        }
+                        break
+                      }
                       'PowerShell' {
                         $ImageStyleObjProps=@{
                             FontName="Lucida Console"
